@@ -1,6 +1,5 @@
 package application;
 
-import java.awt.TextField;
 
 import javafx.application.Application;
 import javafx.collections.FXCollections;
@@ -12,6 +11,7 @@ import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.Separator;
+import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.control.Tooltip;
 import javafx.scene.paint.Color;
@@ -72,11 +72,12 @@ public class Composant extends Application {
         
 		//6- TextField
 		TextField te = new TextField();
-		te.setLayoutX(470);
+		te.setLayoutX(200);
+		te.setLayoutY(200);
 		te.setText("blablabla"); //permet de définir un texte initial
 		//existe : clear(), getText(), copy(), cut(), paste(), selectAll()
 		
-		root.getChildren().addAll(bu,ra1,ra2,cb);
+		root.getChildren().addAll(bu,ra1,ra2,cb,te);
     	 
     	 
          primaryStage.show();
