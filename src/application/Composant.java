@@ -1,5 +1,7 @@
 package application;
 
+import java.awt.TextField;
+
 import javafx.application.Application;
 import javafx.collections.FXCollections;
 import javafx.scene.Group;
@@ -63,11 +65,18 @@ public class Composant extends Application {
 		 */
 		ChoiceBox<Object> cb = 
 				new ChoiceBox<Object>(FXCollections.observableArrayList("First", new Separator(), "A", "B"));
-		cb.setLayoutX(240);
-		cb.setTooltip(new Tooltip("c'est un CB")); //Utilisable par tous les composants, permet d'afficher un message informatif au passage de la souris sur un composant
+		cb.setLayoutX(340);
+		cb.setTooltip(new Tooltip("c'est un CB")); //Utilisable par tous les composants, 
+		                                            //permet d'afficher un message informatif au passage
+		                                            //de la souris sur un composant
         
+		//6- TextField
+		TextField te = new TextField();
+		te.setLayoutX(470);
+		te.setText("blablabla"); //permet de définir un texte initial
+		//existe : clear(), getText(), copy(), cut(), paste(), selectAll()
 		
-		root.getChildren().addAll(bu,ra1,ra2);
+		root.getChildren().addAll(bu,ra1,ra2,cb);
     	 
     	 
          primaryStage.show();
