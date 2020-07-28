@@ -10,8 +10,11 @@ import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
+import javafx.scene.control.ProgressBar;
+import javafx.scene.control.ProgressIndicator;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.ScrollBar;
 import javafx.scene.control.Separator;
@@ -20,6 +23,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.control.Tooltip;
 import javafx.scene.paint.Color;
+import javafx.scene.web.HTMLEditor;
 import javafx.stage.Stage;
 
 public class Composant extends Application {
@@ -113,8 +117,26 @@ public class Composant extends Application {
 		s.setBlockIncrement(10); //Indique combien (10) va augmenter les graduations en cliquant sur la flèche avancée
 		s.setLayoutY(100);
 		
+		//11- PrgressBar
+		ProgressBar pr = new ProgressBar(0.3);
+		pr.setProgress(0.75);
 		
-		root.getChildren().addAll(s);
+		//12 - ProgressIndicator
+		ProgressIndicator pi = new ProgressIndicator();
+		
+		//13- Hyperlink
+		Hyperlink hl = new Hyperlink("Wikipedia");
+		
+		//14- HTMLEditor
+		HTMLEditor htmleditor = new HTMLEditor();
+		htmleditor.setHtmlText("<html><head><title>Coucou</title></head><body>Cette page est une page toute simple</body></html>");
+		System.out.println(htmleditor.getHtmlText()); //Retourne un code HTML, très pratique pour éditer des pages web 
+		
+		
+		
+		
+		
+		root.getChildren().addAll(htmleditor);
 		
 		//root.getChildren().addAll(bu,ra1,ra2,cb,te,pa,sc);
     	 
