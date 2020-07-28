@@ -15,6 +15,7 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.ScrollBar;
 import javafx.scene.control.Separator;
+import javafx.scene.control.Slider;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.control.Tooltip;
@@ -101,10 +102,19 @@ public class Composant extends Application {
 		ComboBox<String> cmb = 
 				new ComboBox(FXCollections.observableArrayList("First", new Separator(), "A", "B"));
 		cmb.getItems().addAll("C"); //Ajouter un élément à notre ComboBox
-		cmb.setVisibleRowCount(2);
+		cmb.setVisibleRowCount(2); //Nous permet d'afficher (2) éléments dans notre combobox
+		
+		//10- Slider
+		Slider s = new Slider();
+		s.setMin(0);
+		s.setMax(100);
+		s.setShowTickLabels(true);
+		s.setMinorTickCount(5);//Interval entre les graduations
+		s.setBlockIncrement(10); //Indique combien (10) va augmenter les graduations en cliquant sur la flèche avancée
+		s.setLayoutY(100);
 		
 		
-		root.getChildren().addAll(cmb);
+		root.getChildren().addAll(s);
 		
 		//root.getChildren().addAll(bu,ra1,ra2,cb,te,pa,sc);
     	 
