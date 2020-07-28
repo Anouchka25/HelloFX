@@ -1,6 +1,12 @@
 package application;
 
 
+import java.io.FileInputStream;
+import java.io.InputStream;
+import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
+import java.util.List;
+
 import javafx.application.Application;
 import javafx.collections.FXCollections;
 import javafx.geometry.Orientation;
@@ -10,19 +16,30 @@ import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.DatePicker;
 import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
+import javafx.scene.control.Menu;
+import javafx.scene.control.MenuBar;
+import javafx.scene.control.MenuItem;
+import javafx.scene.control.Pagination;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.control.ProgressIndicator;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.ScrollBar;
 import javafx.scene.control.Separator;
+import javafx.scene.control.SeparatorMenuItem;
 import javafx.scene.control.Slider;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.control.Tooltip;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
+import javafx.scene.text.Text;
+import javafx.scene.text.TextAlignment;
 import javafx.scene.web.HTMLEditor;
 import javafx.stage.Stage;
 
@@ -130,13 +147,47 @@ public class Composant extends Application {
 		//14- HTMLEditor
 		HTMLEditor htmleditor = new HTMLEditor();
 		htmleditor.setHtmlText("<html><head><title>Coucou</title></head><body>Cette page est une page toute simple</body></html>");
-		System.out.println(htmleditor.getHtmlText()); //Retourne un code HTML, très pratique pour éditer des pages web 
+		//System.out.println(htmleditor.getHtmlText()); //Retourne un code HTML, très pratique pour éditer des pages web 
 		
+		//15- MenuBar
+		MenuBar mb = new MenuBar();
+		Menu fichier = new Menu("Fichier"); //Ici on créé notre menu fichier
+		Menu edition = new Menu("Edition"); 
+		Menu source = new Menu("Source");
+		mb.getMenus().addAll(fichier, edition, source); //On ajoute notre menu fichier à MenuBar mb
+		MenuItem copier = new MenuItem("Copier");
+		fichier.getItems().addAll(copier, new SeparatorMenuItem()); //On ajoute notre item copier à notre menu fichier
 		
+		//16- DatePicker
+		DatePicker dp = new DatePicker();
+		dp.setValue(LocalDate.of(2021, 07, 15));
+		long l = ChronoUnit.DAYS.between(dp.getValue(), dp.getValue().plusDays(42));
+		System.out.println(l);
 		
+		//17- Pagination
+		Pagination pag = new Pagination(4);
+		pag.setPageFactory((Integer pageid) -> go(pageid));
 		
+		//18- Text
+		Text txt = new Text();
+		txt.setText("Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. ");
+		txt.setWrappingWidth(200);
+		txt.setTextAlignment(TextAlignment.JUSTIFY);
+		txt.setLayoutY(100);
+		txt.setFont(Font.font("Mongolian Baiti", 20));
 		
-		root.getChildren().addAll(htmleditor);
+		List li = Font.getFamilies();
+		for (int i =0; i<li.size(); i++) {
+			System.out.println(li.get(i));
+		}
+		
+		//19 - Image / ImageView
+		FileInputStream input = new FileInputStream("img/chat.jpg");
+		Image image = new Image(input);
+		ImageView imageView = new ImageView(image);
+		imageView.setLayoutY(50);
+		
+	    root.getChildren().addAll(imageView);
 		
 		//root.getChildren().addAll(bu,ra1,ra2,cb,te,pa,sc);
     	 
@@ -145,6 +196,12 @@ public class Composant extends Application {
      } catch(Exception e) {
 			e.printStackTrace();
 		}
+	}
+	
+	public Group go(int pageid) {
+		Group gr = new Group();
+		gr.getChildren().add(new Button(String.valueOf(pageid)));
+		return gr;
 	}
 
 	public static void main(String[] args) {
