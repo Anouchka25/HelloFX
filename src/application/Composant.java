@@ -3,13 +3,17 @@ package application;
 
 import javafx.application.Application;
 import javafx.collections.FXCollections;
+import javafx.geometry.Orientation;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.PasswordField;
 import javafx.scene.control.RadioButton;
+import javafx.scene.control.ScrollBar;
 import javafx.scene.control.Separator;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
@@ -24,9 +28,10 @@ public class Composant extends Application {
 		// TODO Auto-generated method stub
      try {
     	 Group root = new Group();
-		 Scene scene = new Scene(root,400,400,Color.BEIGE);
+		 Scene scene = new Scene(root,400,400,Color.AQUAMARINE);
 		 
 		 primaryStage.setScene(scene);
+		 primaryStage.setTitle("Les composants");
 		
 		//1-Label
 		Label la = new Label("Ceci est une étiquette");
@@ -77,7 +82,31 @@ public class Composant extends Application {
 		te.setText("blablabla"); //permet de définir un texte initial
 		//existe : clear(), getText(), copy(), cut(), paste(), selectAll()
 		
-		root.getChildren().addAll(bu,ra1,ra2,cb,te);
+		//7- PasswordField
+		PasswordField pa = new PasswordField();
+		pa.setLayoutX(200);
+		pa.setLayoutY(300);
+		pa.setPromptText("saisir"); //permet de mettre un texte peu visible en arrière plan
+		
+		//8- ScrollBar
+		ScrollBar sc = new ScrollBar();
+		sc.setLayoutX(150);
+		sc.setLayoutY(150);
+		sc.setOrientation(Orientation.VERTICAL);
+		sc.setMin(0); //ScrollBar fonctionne avec des valeurs numériques, vous pouvez donc définir le minimum 
+		              //et le maximum
+		sc.setMax(2000);
+		
+		//9- ComboBox
+		ComboBox<String> cmb = 
+				new ComboBox(FXCollections.observableArrayList("First", new Separator(), "A", "B"));
+		cmb.getItems().addAll("C"); //Ajouter un élément à notre ComboBox
+		cmb.setVisibleRowCount(2);
+		
+		
+		root.getChildren().addAll(cmb);
+		
+		//root.getChildren().addAll(bu,ra1,ra2,cb,te,pa,sc);
     	 
     	 
          primaryStage.show();
